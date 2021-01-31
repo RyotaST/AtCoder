@@ -1,0 +1,1 @@
+gets.split.map(&:to_i).each_cons(2){|a,b| p 2*a+100-b}
