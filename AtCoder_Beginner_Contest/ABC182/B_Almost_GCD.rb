@@ -2,18 +2,19 @@ require 'set'
 
 N = gets.to_i
 a = gets.split.map(&:to_i)
-s = Set.new
 count = 0
-result = []
+result_count = 0
+result_value = 0
 
-a.each do |n1|
-  1.upto(n1) do |n2|
-    s << n2 if n1 % n2 == 0
+(2..a.max).each do |n1|
+  a.each do |n2|
+    count += 1 if (n2 % n1) == 0
   end
+  if count > result_count
+    result_count = count
+    result_value = n1
+  end
+  count = 0
 end
 
-s.each do |n3|
-  a.each do |n4|
-    count += 1 if n4 % n3 == 0
-  end
-  result.push(count, n4)
+p result_value
