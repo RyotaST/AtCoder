@@ -1,0 +1,1 @@
+gets.chomp.chars.map.each_cons(3){|a,b,c| puts ((a == b) && (b == c)) ? "Won" : "Lost"}
