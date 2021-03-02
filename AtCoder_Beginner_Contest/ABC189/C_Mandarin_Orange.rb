@@ -6,11 +6,12 @@ result = 0
 l = 0
 r = 0
 x = 0
+result = 0
 
-0.upto(a.size-1) do |n1|
-  x = a[n1]
-  0.upto(n1) do |n2|
-    x = a[n2]) if a[n2] < a[n1]
+1.upto(a.size) do |n1|
+  a.each_cons(n1) do |n2|
+    result = n2.min * n2.size if n2.min * n2.size > result
   end
-  sum = 
-  result = sum
+end
+
+puts result
