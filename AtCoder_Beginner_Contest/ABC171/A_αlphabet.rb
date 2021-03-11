@@ -1,0 +1,1 @@
+puts gets.chomp=~/[a-z]/ ? 'a' : 'A'
