@@ -1,0 +1,1 @@
+gets.split.map(&:to_i).each_with_index{|x,index| puts index+=1 if x==0}
