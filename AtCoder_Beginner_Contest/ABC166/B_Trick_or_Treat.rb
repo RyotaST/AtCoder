@@ -17,4 +17,4 @@ sweets.each do |n1|
 end
 
 puts N - result.length
-#test
+#test2
