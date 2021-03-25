@@ -9,3 +9,4 @@ A.upto(B) do |n|
 end
 
 puts judge ? "OK" : "NG"
+#test
