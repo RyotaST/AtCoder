@@ -1,17 +1,24 @@
 N = gets.to_i
 S = gets.chomp.chars
-result = 0
-box = []
-[0,1].repeated_permutation(N) do |n|
-  n.each_with_index do |value, i|
-    value == 1 ? box.push(S[i]) : next
-  end
-  if box.nil?
-    next
+a, at, atc, atco, atcod, atcode, atcoder = 0
+S.each do |x|
+  if x == "a"
+    a += 1
+  elsif x == "t"
+    at += a
+  elsif x == "c"
+    atc += at
+  elsif x == "o"
+    atco += atc
+  elsif X == "d"
+    atcod += atco
+  elsif x == "e"
+    atcode += atcod
+  elsif x == "r"
+    atcoder += atcode
   else
-    result += 1 if box.join == "atcoder"
+    next
   end
-  box = []
 end
 
-puts result % (10^9+7)
+puts atcoder % (10^9+7)
