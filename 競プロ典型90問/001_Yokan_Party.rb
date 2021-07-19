@@ -5,18 +5,22 @@ result = 0
 min = 0
 left = 0
 
-a.combination(k) do |n1|
-  n1.push(l)
-  n1.sort.each do |n2|
-    if min == 0
-      min = n2
-    else
-      min = n2-left if min > n2-left
+answer = (1..l).bsearch do |x|
+  a.each_with_index do |value, index|
+    if index == 0
+      result = 0
     end
-    left = n2
+    result += value
+    if index == (a.length-1)
+      break
+    end
+    if result >= x
+      result = 0
+      next
+    end
   end
-  result = min if min > result
-  min = 0
+  puts result
+  result >= x
 end
 
-puts result
+puts answer
