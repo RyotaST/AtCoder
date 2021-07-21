@@ -5,7 +5,7 @@ relations = Array.new(M){gets.split.map(&:to_i)}
 result = -1
 min = 10**9
 
-(1..N).to_a.permutation(N).to_a.each do |pattern|
+(1..N).to_a.permutation(N){ |pattern|
   judge = false
   count = 0
   temp = 0
@@ -28,6 +28,8 @@ min = 10**9
     next
   end
   min = temp if (temp > 0 && temp < min)
-end
+}
 
 puts (min == 10**9) ? result : min
+
+あ
