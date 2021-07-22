@@ -15,16 +15,16 @@ min = 10**9
   count = 0
   temp = 0
   temp += A[pattern[0]-1][count]
-  pattern.each_cons(2) do |a,b|
+  left = pattern[0]
+  pattern.each do |a|
     count += 1
-    if relations[a-1][b-1] == true
+    next if count == 1
+    if relations[a-1][left-1] == true
       judge = true
       break
-    end
-    if judge == true
-      break
     else
-      temp += A[b-1][count]
+      temp += A[a-1][count-1]
+      left = a
     end
   end
   if judge == true
