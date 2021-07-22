@@ -1,7 +1,12 @@
 N = gets.to_i
 A = Array.new(N){gets.split.map(&:to_i)}
 M = gets.to_i
-relations = Array.new(M){gets.split.map(&:to_i)}
+relations = Array.new(N){Array.new}
+M.times do
+  a,b = gets.split.map(&:to_i)
+  relations[a-1][b-1] = true
+  relations[b-1][a-1] = true
+end
 result = -1
 min = 10**9
 
@@ -12,11 +17,9 @@ min = 10**9
   temp += A[pattern[0]-1][count]
   pattern.each_cons(2) do |a,b|
     count += 1
-    relations.each do |relation|
-      if (relation.include?(a) && relation.include?(b))
-        judge = true
-        break
-      end
+    if relations[a-1][b-1] == true
+      judge = true
+      break
     end
     if judge == true
       break
@@ -31,5 +34,3 @@ min = 10**9
 }
 
 puts (min == 10**9) ? result : min
-
-あ
