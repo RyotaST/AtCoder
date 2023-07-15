@@ -16,9 +16,11 @@ int main(){
   for(int i=0;i<N;i++){
     if(value.at(i).at(0) == 1){
       dp.at(i+1).at(1) = max(dp.at(i).at(1), dp.at(i).at(0)+value.at(i).at(1));
+      dp.at(i+1).at(0) = dp.at(i).at(0);
     }
     else{
-      dp.at(i+1).at(0) = max(dp.at(i).at(0),dp.at(i).at(1)+value.at(i).at(1))
+      dp.at(i+1).at(0) = max(dp.at(i).at(0),dp.at(i).at(1)+value.at(i).at(1));
+      dp.at(i+1).at(1) = dp.at(i).at(1);
     }
   }
   cout << ans << endl;
