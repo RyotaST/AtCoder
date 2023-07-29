@@ -1,41 +1,76 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int count(int n, int m,vector<string> &S){
+  if(flg(n,m)){
+    if(check(n-1,m, ya) || check(n,m-1) || check(n+1,m) || check(n,m+1)){
+
+    }
+  }
+}
+
+bool check(int n, int m, int ya, int &count){
+  int a;
+  if(ya = 0){
+    a = n;
+    while(S.at(a).at(m) == '#'){
+      if(flg.at(a).at(m)) == true){
+        flg.at(a).at(m) = false;
+        count += 1;
+        a = n-1;
+      }
+      else{
+        break;
+      }
+    }
+  }
+  if(ya = 1){
+    a = m;
+    while(S.at(n).at(a) == '#'){
+      if(flg.at(n).at(a)) == true){
+        flg.at(n).at(a) = false;
+        count += 1;
+        a = m+1;
+      }
+      else{
+        break;
+      }
+    }
+  }
+  if(ya = 2){
+    a = n;
+    while(S.at(a).at(m) == '#'){
+      if(flg.at(a).at(m)) == true){
+        flg.at(a).at(m) = false;
+        count += 1;
+        a = n+1;
+      }
+      else{
+        break;
+      }
+    }
+  if(ya = 2){
+    a = m;
+    while(S.at(n).at(a) == '#'){
+      if(flg.at(n).at(a)) == true){
+        flg.at(n).at(a) = false;
+        count += 1;
+        a = m-1;
+      }
+      else{
+        break;
+      }
+    }
+  }
+}
+
 int main() {
-  int N;
-  cin >> N;
-  vector<int> A(N+1);
-  A.at(0) = 1;
-  int a = 0;
-  set<int> s = {1};
-  int num;
-  for(int i=1;i<N;i++){
-    cin >> A.at(i);
-  }
-  while(1){
-    if(s.count(A.at(0))){
-      num = A.at(a);
-      break;
-    }
-    else{
-      s.insert(A.at(a));
-    }
-    a++;
-  }
-  int b;
+  int N,M;
+  cin >> N >> M;
+  vector<string> S(N);
+  vector<vector<bool>> flg(N, <vector<bool>(M, true)>)
   for(int i=0;i<N;i++){
-    if(A.at(i) == num){
-      ans = (a-i)+1;
-      b = i;
-    }
+    cin >> S.at(i);
   }
-  for(int i=i;i<a+1;i++){
-    cout << A.at(i);
-    if(i == a){
-      cout << endl;
-    }
-    else{
-      cout << " ";
-    }
-  }
+  check(1,1);
 }
