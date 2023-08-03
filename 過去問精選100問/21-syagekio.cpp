@@ -4,13 +4,38 @@ using namespace std;
 int main(){
   int N;
   cin >> N;
-  vector<long long> baloon(N,vector<long long>(2));
-  vector<long long> ans(N);
+  long long ans;
+  vector<long long> H(N),S(N);
   for(int i=0;i<N;i++){
-    cin >> baloon.at(i).at(0);
-    cin >> baloon.at(i).at(1);
-    ans.at(i) = baloon.at(i).at(0)+baloon.at(i).at(1)*(N-1);
+    cin >> H.at(i);
+    cin >> S.at(i);
   }
-  sort(ans.begin(),ans.end());
-  cout << ans.at(N-1) << endl;
+  long long right = 1e9+1;
+  long long left = 0;
+  while(left+1 < right){
+    long long mid = (right + left) / 2;
+    bool ok = true;
+    vector<long long> t(N,0);
+    for(int i=0;i<N;i++){
+      if(mid < H.at(i)){
+        ok = false;
+      }
+      else{
+        t.at(i) = (mid-H.at(i))/S.at(i);
+      }
+    }
+    sort(t.begin(),t.end());
+    for(int i=0;i<N;i++){
+      if(t.at(i) < i){
+        ok = false;
+      }
+    }
+    if(ok){
+      right = mid;
+    }
+    else{
+      left = mid;
+    }
+  }
+  cout << right << endl;
 }
