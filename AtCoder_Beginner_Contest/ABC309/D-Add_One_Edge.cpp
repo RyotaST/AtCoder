@@ -2,57 +2,44 @@
 using namespace std;
 #define rep(i,x,n) for (int i=(int)x;i<(int)n;i++)
 
-class UnionFind {
-public:
-    vector<int> parent;
-    vector<int> size;
-
-    UnionFind(int n) {
-        parent.resize(n);
-        size.resize(n, 1);
-        for (int i = 0; i < n; i++) {
-            parent[i] = i;
-        }
-    }
-
-    int find(int x) {
-        if (parent[x] == x) {
-            return x;
-        } else {
-            parent[x] = find(parent[x]);
-            return parent[x];
-        }
-    }
-
-    void unite(int x, int y) {
-        int root_x = find(x);
-        int root_y = find(y);
-        if (root_x == root_y) return;
-
-        if (size[root_x] < size[root_y]) {
-            parent[root_x] = root_y;
-            size[root_y] += size[root_x];
-        } else {
-            parent[root_y] = root_x;
-            size[root_x] += size[root_y];
-        }
-    }
-
-    bool same(int x, int y) {
-        return find(x) == find(y);
-    }
-};
-
 int main(){
   int N1,N2,M;
   cin >> N1 >> N2 >> M;
-  vector<vector<int>> ab; 
+  vector<vector<int>> ab(N1+N2+1,vector<int>());
+  queue<int> que;
   rep(i,0,M){
     int a,b;
     cin >> a >> b;
-    ab.push_back({a,b});
+    ab[a].push_back(b);
+    ab[b].push_back(a);
   }
-  UnionFind UF(N1+N2);
-  rep(i,0,M) UF.unite(ab[i][0]-1, ab[i][1]-1);
-  cout << UF.size[UF.find(N1+N2-1)]+1 << endl;
+  vector<int> dist(N1+N2+1,-1);
+  dist[1] = 0;
+  que.push(1);
+  while(!que.empty()){
+      int v = que.front();
+      que.pop();
+      for(auto el: ab[v]){
+        if(dist[el] == -1){
+          dist[el] = dist[v]+1;
+          que.push(el);
+        }
+      }
+  }
+  int max1 = *max_element(dist.begin(),dist.end());
+  que.push(N1+N2);
+  dist.assign(N1+N2+1,-1);
+  dist[N1+N2] = 0;
+  while(!que.empty()){
+    int v = que.front();
+    que.pop();
+    for(auto el: ab[v]){
+      if(dist[el] == -1){
+        dist[el] = dist[v]+1;
+        que.push(el);
+      }
+    }
+  }
+  int max2 = *max_element(dist.begin(),dist.end());
+  cout << max1+max2+1 << endl;
 }
