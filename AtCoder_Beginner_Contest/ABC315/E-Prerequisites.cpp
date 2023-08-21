@@ -9,6 +9,7 @@ int main(){
   rep(i,1,N+1){
     int C;
     cin >> C;
+    if(C == 0) book[i].push_back(0);
     rep(j,0,C){
       int P;
       cin >> P;
@@ -23,6 +24,7 @@ int main(){
     vector<int> v = que.front();
     que.pop();
     rep(i,0,v.size()){
+      if(v[i] == 0) break;
       if(!(s.count(v[i]))){
         que.push(book[v[i]]);
         if(v[i] != 1)sta.push(v[i]);
