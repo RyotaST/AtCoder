@@ -7,8 +7,9 @@ int main(){
   cin >> N;
   string s;
   s = to_string(N);
+  string ans;
   rep(i,0,N){
-    s += s;
+    ans += s;
   }
-  cout << s << endl;
+  cout << ans << endl;
 }
