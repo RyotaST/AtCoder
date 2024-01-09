@@ -5,28 +5,35 @@ using namespace std;
 int main(){
   int N;
   cin >> N;
-  int num;
-  num = (N+1)/3;
-  int s = 1;
-  int sum = 1;
-  rep(i,0,num){
-    s *= 10;
-    sum += s;
-  }
-  int ans = 0;
-  int check = (N-1)%3;
-  if(check == 0){
-    ans = sum*3;
-  }
-  else{
-    rep(i,0,check){
-      ans += sum;
+  set<long long> s;
+  long long a = 1;
+  long long b = 1;
+  long long c = 1;
+  rep(i,0,12){
+    if(i != 0){
+      a = (a*10)+1;
     }
-    rep(i,0,3-check){
-      ans += (sum-s);
+    rep(j,0,12){
+      if(j != 0){
+        b = (b*10)+1;
+      }
+      else{
+        b = 1;
+      }
+      rep(k,0,12){
+        if(k != 0){
+          c = (c*10)+1;
+        }
+        else{
+          c = 1;
+        }
+        s.insert(a+b+c);
+      }
     }
   }
-  cout << ans << endl;
+  auto it = s.begin();
+  rep(i,1,N) *it++;
+  cout << *it << endl;
 }
 
 /*
